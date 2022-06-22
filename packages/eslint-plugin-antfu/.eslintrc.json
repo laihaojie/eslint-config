@@ -1,5 +1,5 @@
 {
-  "extends": "@antfu",
+  "extends": "@djie",
   "plugins": [
     "antfu"
   ]
