@@ -1,6 +1,0 @@
-{
-  "extends": "@djie",
-  "plugins": [
-    "antfu"
-  ]
-}

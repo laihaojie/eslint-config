@@ -2,9 +2,7 @@
   "name": "@djie/eslint-config-react",
   "version": "0.25.1",
   "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com> (https://github.com/antfu/)",
   "license": "MIT",
-  "homepage": "https://github.com/antfu/eslint-config",
   "keywords": [
     "eslint-config"
   ],
