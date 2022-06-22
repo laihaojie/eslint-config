@@ -177,7 +177,7 @@ module.exports = {
       ignoreRestSiblings: true,
       vars: 'all',
     }],
-    'no-use-before-define': ['error', { functions: false, classes: false, variables: false }],
+    'no-use-before-define': 'off',
     'no-useless-call': 'error',
     'no-useless-computed-key': 'error',
     'no-useless-constructor': 'error',
