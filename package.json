@@ -13,6 +13,7 @@
     "@djie/eslint-config": "*",
     "bumpp": "^7.1.1",
     "eslint": "^8.16.0",
+    "eslint-plugin-antfu": "^0.25.1",
     "typescript": "^4.7.2"
   }
 }
