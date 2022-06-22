@@ -24,6 +24,8 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/prefer-import-from-vue': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-newline': 'off',
 
     // reactivity transform
     'vue/no-setup-props-destructure': 'off',
@@ -94,6 +96,5 @@ module.exports = {
     'vue/space-infix-ops': 'error',
     'vue/space-unary-ops': ['error', { words: true, nonwords: false }],
     'vue/template-curly-spacing': 'error',
-    'vue/singleline-html-element-content-newline': 'off',
   },
 }
