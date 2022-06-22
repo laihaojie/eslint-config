@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "prepare": "pnpm -r run stub",
-    "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public --registry https://registry.npmjs.org/"
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public --registry https://registry.npmjs.org/ --no-git-checks"
   },
   "devDependencies": {
     "@djie/eslint-config": "*",
