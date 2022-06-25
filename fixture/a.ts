@@ -7,12 +7,13 @@ export interface Foo {
 
 function ApiProperty() { }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class CreatePostDto {
-  // @ts-ignore
+  // @ts-expect-error xxxx
   @ApiProperty()
   title: string
 
-  // @ts-ignore
+  // @ts-expect-error xxxx
   @ApiProperty()
   content: string
 }
