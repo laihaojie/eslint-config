@@ -10,10 +10,17 @@
     "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public --registry https://registry.npmjs.org/ --no-git-checks"
   },
   "devDependencies": {
-    "@djie/eslint-config": "*",
-    "bumpp": "^7.1.1",
-    "eslint": "^8.16.0",
-    "eslint-plugin-antfu": "^0.25.1",
-    "typescript": "^4.7.2"
+    "@djie/eslint-config": "workspace:*",
+    "bumpp": "^7.2.0",
+    "eslint": "^8.18.0",
+    "eslint-plugin-antfu": "^0.25.2",
+    "typescript": "^4.7.4"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "typescript"
+      ]
+    }
   }
 }
