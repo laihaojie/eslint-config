@@ -332,7 +332,8 @@ module.exports = {
     'yml/no-empty-document': 'off',
 
     // antfu
-    'antfu/if-newline': 'error',
+    // 'antfu/if-newline': 'error',
+    'antfu/if-newline': 'off', // 关闭if后换行
     'antfu/import-dedupe': 'error',
     // 'antfu/prefer-inline-type-import': 'error',
   },
