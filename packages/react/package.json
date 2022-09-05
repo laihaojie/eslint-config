@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-react",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -17,7 +17,7 @@
     "eslint": ">=7.4.0"
   },
   "dependencies": {
-    "@djie/eslint-config-ts": "workspace:1.0.11",
+    "@djie/eslint-config-ts": "workspace:*",
     "eslint-plugin-react": "^7.31.6"
   },
   "devDependencies": {

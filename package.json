@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-monorepo",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": true,
   "packageManager": "pnpm@7.3.0",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public --registry https://registry.npmjs.org/ --no-git-checks"
   },
   "devDependencies": {
-    "@djie/eslint-config": "workspace:1.0.11",
+    "@djie/eslint-config": "workspace:*",
     "bumpp": "^7.2.0",
     "eslint": "^8.23.0",
     "eslint-plugin-antfu": "^0.25.2",
