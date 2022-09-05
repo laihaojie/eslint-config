@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-vue",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -14,10 +14,10 @@
     "eslint": ">=7.4.0"
   },
   "dependencies": {
-    "@djie/eslint-config-ts": "workspace:*",
-    "eslint-plugin-vue": "^9.1.1"
+    "@djie/eslint-config-ts": "workspace:1.0.11",
+    "eslint-plugin-vue": "^9.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^8.23.0"
   }
 }

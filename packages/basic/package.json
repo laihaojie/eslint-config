@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-basic",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -21,16 +21,16 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsonc": "^2.3.0",
+    "eslint-plugin-jsonc": "^2.4.0",
     "eslint-plugin-markdown": "^2.2.1",
-    "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-unicorn": "^42.0.0",
-    "eslint-plugin-yml": "^1.0.0",
+    "eslint-plugin-yml": "^1.1.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "yaml-eslint-parser": "^1.0.1"
+    "yaml-eslint-parser": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^8.23.0"
   }
 }

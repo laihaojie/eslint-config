@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "MIT",
   "keywords": [
     "eslint-config"
@@ -13,24 +13,24 @@
     "eslint": ">=7.4.0"
   },
   "dependencies": {
-    "@djie/eslint-config-react": "workspace:*",
-    "@djie/eslint-config-vue": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
+    "@djie/eslint-config-react": "workspace:1.0.11",
+    "@djie/eslint-config-vue": "workspace:1.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsonc": "^2.3.0",
-    "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-unicorn": "^42.0.0",
-    "eslint-plugin-vue": "^9.1.1",
-    "eslint-plugin-yml": "^1.0.0",
+    "eslint-plugin-jsonc": "^2.4.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "eslint-plugin-vue": "^9.4.0",
+    "eslint-plugin-yml": "^1.1.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "yaml-eslint-parser": "^1.0.1"
+    "yaml-eslint-parser": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^8.23.0"
   },
   "pnpm": {
     "peerDependencyRules": {
