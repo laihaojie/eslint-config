@@ -20,6 +20,7 @@ module.exports = {
     'dist',
     'LICENSE*',
     'output',
+    'out',
     'coverage',
     'public',
     'temp',
@@ -27,6 +28,17 @@ module.exports = {
     'pnpm-lock.yaml',
     'yarn.lock',
     '__snapshots__',
+    // ignore for in lint-staged
+    '*.css',
+    '*.png',
+    '*.ico',
+    '*.toml',
+    '*.patch',
+    '*.txt',
+    '*.crt',
+    '*.key',
+    'Dockerfile',
+    // force include
     '!.github',
     '!.vitepress',
     '!.vscode',
@@ -35,6 +47,8 @@ module.exports = {
     'html',
     'unicorn',
     'antfu',
+    'no-only-tests',
+    'unused-imports',
   ],
   settings: {
     'import/resolver': {
@@ -46,7 +60,6 @@ module.exports = {
       files: ['*.json', '*.json5'],
       parser: 'jsonc-eslint-parser',
       rules: {
-        'eol-last': 'off',
         'jsonc/array-bracket-spacing': ['error', 'never'],
         'jsonc/comma-dangle': ['error', 'never'],
         'jsonc/comma-style': ['error', 'last'],
@@ -184,13 +197,20 @@ module.exports = {
     'import/no-mutable-exports': 'error',
     'import/no-unresolved': 'off',
     'import/no-absolute-path': 'off',
+    'import/newline-after-import': ['error', { count: 1 }],
 
     // Common
     'semi': ['error', 'never'],
     'curly': ['error', 'multi-or-nest', 'consistent'],
     'quotes': ['error', 'single'],
     'quote-props': ['error', 'consistent-as-needed'],
-    'no-unused-vars': 'warn',
+
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+    ],
+
     'no-param-reassign': 'off',
     'array-bracket-spacing': ['error', 'never'],
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
@@ -222,14 +242,13 @@ module.exports = {
         asyncArrow: 'always',
       },
     ],
-    'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
 
     // es6
     'no-var': 'error',
     'prefer-const': [
       'error',
       {
-        destructuring: 'any',
+        destructuring: 'all',
         ignoreReadBeforeAssign: true,
       },
     ],
@@ -284,6 +303,12 @@ module.exports = {
     'require-await': 'off',
     'no-return-assign': 'off',
     'operator-linebreak': ['error', 'before'],
+    'max-statements-per-line': ['error', { max: 1 }],
+
+    // node
+    // 'n/prefer-global/process': ['error', 'never'], // Not sure if we need it as we are using `process.env.NODE_ENV` a lot in front-end.
+    'n/prefer-global/buffer': ['error', 'never'],
+    'n/no-callback-literal': 'off',
 
     // unicorns
     // Pass error message when throwing errors
@@ -308,13 +333,14 @@ module.exports = {
     'unicorn/prefer-type-error': 'error',
     // Use new when throwing error
     'unicorn/throw-new-error': 'error',
+    // Prefer using the node: protocol
+    'unicorn/prefer-node-protocol': 'error',
 
-    'no-use-before-define': 'off',
+    'no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
     'eslint-comments/disable-enable-pair': 'off',
     'import/no-named-as-default-member': 'off',
     'import/no-named-as-default': 'off',
     'import/namespace': 'off',
-    'n/no-callback-literal': 'off',
 
     'sort-imports': [
       'error',
@@ -329,9 +355,9 @@ module.exports = {
 
     // yml
     'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
-    'yml/no-empty-document': 'off',
+    'yml/no-empty-document': 'off',    // antfu
 
-    // antfu
+    
     // 'antfu/if-newline': 'error',
     'antfu/if-newline': 'off', // 关闭if后换行
     'antfu/import-dedupe': 'error',

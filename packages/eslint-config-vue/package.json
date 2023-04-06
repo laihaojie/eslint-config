@@ -1,6 +1,6 @@
 {
-  "name": "@djie/eslint-config-react",
-  "version": "1.0.17",
+  "name": "@djie/eslint-config-vue",
+  "version": "1.0.18",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -10,20 +10,16 @@
   "files": [
     "index.js"
   ],
-  "scripts": {
-    "lint": "eslint . --config=index.js"
-  },
   "peerDependencies": {
     "eslint": ">=7.4.0"
   },
   "dependencies": {
+    "@djie/eslint-config-basic": "workspace:*",
     "@djie/eslint-config-ts": "workspace:*",
-    "eslint-plugin-react": "^7.31.6",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-vue": "^9.10.0",
+    "local-pkg": "^0.4.3"
   },
   "devDependencies": {
-    "eslint": "^8.23.0",
-    "react": "^18.2.0",
-    "typescript": "^4.8.2"
+    "eslint": "^8.37.0"
   }
 }

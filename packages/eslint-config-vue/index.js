@@ -1,3 +1,10 @@
+const { isPackageExists } = require('local-pkg')
+
+const TS = isPackageExists('typescript')
+
+if (!TS)
+  console.warn('[@antfu/eslint-config] TypeScript is not installed, fallback to JS only.')
+
 module.exports = {
   overrides: [
     {
@@ -9,13 +16,17 @@ module.exports = {
       rules: {
         'no-unused-vars': 'off',
         'no-undef': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
+        ...(TS
+          ? { '@typescript-eslint/no-unused-vars': 'off' }
+          : null),
       },
     },
   ],
   extends: [
     'plugin:vue/vue3-recommended',
-    '@djie/eslint-config-ts',
+    TS
+      ? '@djie/eslint-config-ts'
+      : '@djie/eslint-config-basic',
   ],
   rules: {
     'vue/max-attributes-per-line': 'off',
@@ -24,9 +35,7 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/prefer-import-from-vue': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'vue/first-attribute-linebreak': 'off',
+    'vue/no-v-text-v-html-on-component': 'off',
 
     // reactivity transform
     'vue/no-setup-props-destructure': 'off',
@@ -49,7 +58,7 @@ module.exports = {
     }],
     'vue/no-restricted-v-bind': ['error', '/^v-/'],
     'vue/no-useless-v-bind': 'error',
-    'vue/no-v-text-v-html-on-component': 'error',
+    'vue/no-unused-refs': 'error',
     'vue/padding-line-between-blocks': ['error', 'always'],
     'vue/prefer-separate-static-class': 'error',
 
@@ -62,8 +71,7 @@ module.exports = {
     'vue/comma-spacing': ['error', { before: false, after: true }],
     'vue/comma-style': ['error', 'last'],
     'vue/dot-location': ['error', 'property'],
-    // 'vue/dot-notation': ['error', { allowKeywords: true }],
-    'vue/dot-notation': 'off',
+    'vue/dot-notation': ['error', { allowKeywords: true }],
     'vue/eqeqeq': ['error', 'smart'],
     // 'vue/func-call-spacing': ['off', 'never'],
     'vue/key-spacing': ['error', { beforeColon: false, afterColon: true }],
@@ -98,8 +106,5 @@ module.exports = {
     'vue/space-infix-ops': 'error',
     'vue/space-unary-ops': ['error', { words: true, nonwords: false }],
     'vue/template-curly-spacing': 'error',
-    'vue/html-indent': ['error', 2, {
-      alignAttributesVertically: false,
-    }],
   },
 }

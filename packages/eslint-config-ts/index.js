@@ -1,4 +1,8 @@
+const fs = require('node:fs')
+const { join } = require('node:path')
 const basic = require('@djie/eslint-config-basic')
+
+const tsconfig = process.env.ESLINT_TSCONFIG || 'tsconfig.eslint.json'
 
 module.exports = {
   extends: [
@@ -11,7 +15,52 @@ module.exports = {
       node: { extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.d.ts'] },
     },
   },
-  overrides: basic.overrides,
+  overrides: basic.overrides.concat(
+    !fs.existsSync(join(process.cwd(), tsconfig))
+      ? []
+      : [{
+          parserOptions: {
+            tsconfigRootDir: process.cwd(),
+            project: [tsconfig],
+          },
+          parser: '@typescript-eslint/parser',
+          excludedFiles: ['**/*.md/*.*'],
+          files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
+          // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts
+          rules: {
+            'no-throw-literal': 'off',
+            '@typescript-eslint/no-throw-literal': 'error',
+            'no-implied-eval': 'off',
+            '@typescript-eslint/no-implied-eval': 'error',
+            'dot-notation': 'off',
+            '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }],
+            '@typescript-eslint/no-floating-promises': 'error',
+            '@typescript-eslint/no-misused-promises': 'error',
+            '@typescript-eslint/await-thenable': 'error',
+            '@typescript-eslint/no-for-in-array': 'error',
+            '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+            '@typescript-eslint/no-unsafe-argument': 'error',
+            '@typescript-eslint/no-unsafe-assignment': 'error',
+            '@typescript-eslint/no-unsafe-call': 'error',
+            '@typescript-eslint/no-unsafe-member-access': 'error',
+            '@typescript-eslint/no-unsafe-return': 'error',
+            'require-await': 'off',
+            '@typescript-eslint/require-await': 'error',
+            '@typescript-eslint/restrict-plus-operands': 'error',
+            '@typescript-eslint/restrict-template-expressions': 'error',
+            '@typescript-eslint/unbound-method': 'error',
+          },
+        }, {
+          // https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/unbound-method.md
+          files: ['**/__tests__/**/*.ts', '**/*.spec.ts', '**/*.test.ts'],
+          plugins: ['jest'],
+          rules: {
+            // you should turn the original rule off *only* for test files
+            '@typescript-eslint/unbound-method': 'off',
+            'jest/unbound-method': 'error',
+          },
+        }],
+  ),
   rules: {
     'import/named': 'off',
 
@@ -58,19 +107,16 @@ module.exports = {
         'JSXEmptyExpression',
         'JSXSpreadChild',
         'TSTypeParameterInstantiation',
-        // 修复装饰器导致的缩进问题
         'FunctionExpression > .params[decorators.length > 0]',
         'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
         'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
       ],
       offsetTernaryExpressions: true,
     }],
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
     'brace-style': 'off',
     '@typescript-eslint/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     'comma-dangle': 'off',
@@ -106,14 +152,9 @@ module.exports = {
     '@typescript-eslint/no-loss-of-precision': 'error',
     'lines-between-class-members': 'off',
     '@typescript-eslint/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
-    // The following rule overrides require a parser service, aka. require a `typescript.json` path.
-    // This needs to be done individually for each project, and it slows down linting significantly.
-    // 'no-throw-literal': 'off',
-    // '@typescript-eslint/no-throw-literal': 'error',
-    // 'no-implied-eval': 'off',
-    // '@typescript-eslint/no-implied-eval': 'error',
-    // 'dot-notation': 'off',
-    // '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }],
+
+    // antfu
+    'antfu/generic-spacing': 'error',
 
     // off
     '@typescript-eslint/consistent-indexed-object-style': 'off',
@@ -130,5 +171,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
+    // handled by unused-imports/no-unused-imports
+    '@typescript-eslint/no-unused-vars': 'off',
   },
 }

@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-ts",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "license": "MIT",
   "keywords": [
@@ -16,10 +16,11 @@
   },
   "dependencies": {
     "@djie/eslint-config-basic": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1"
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint-plugin-jest": "^27.2.1"
   },
   "devDependencies": {
-    "eslint": "^8.23.0"
+    "eslint": "^8.37.0"
   }
 }
