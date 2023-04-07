@@ -154,9 +154,15 @@ module.exports = {
       },
     },
     {
-      files: ['*.js'],
+      files: ['*.js', '*.cjs'],
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
+      rules: {
+        'no-void': ['error', { allowAsStatement: true }],
       },
     },
     {
@@ -169,6 +175,7 @@ module.exports = {
       files: ['*.test.ts', '*.test.js', '*.spec.ts', '*.spec.js'],
       rules: {
         'no-unused-expressions': 'off',
+        'no-only-tests/no-only-tests': 'error',
       },
     },
     {
@@ -180,7 +187,10 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/comma-dangle': 'off',
+        '@typescript-eslint/consistent-type-imports': 'off',
         'import/no-unresolved': 'off',
+        'unused-imports/no-unused-imports': 'off',
+        'unused-imports/no-unused-vars': 'off',
         'no-alert': 'off',
         'no-console': 'off',
         'no-restricted-imports': 'off',
@@ -355,12 +365,12 @@ module.exports = {
 
     // yml
     'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
-    'yml/no-empty-document': 'off',    // antfu
+    'yml/no-empty-document': 'off',
 
-    
-    // 'antfu/if-newline': 'error',
-    'antfu/if-newline': 'off', // 关闭if后换行
+    // antfu
+    // 'antfu/if-newline': 'error', -阿杰
     'antfu/import-dedupe': 'error',
-    // 'antfu/prefer-inline-type-import': 'error',
+    // 'antfu/top-level-function': 'error',  -阿杰
+    // 'antfu/prefer-inline-type-import': 'error', -阿杰
   },
 }

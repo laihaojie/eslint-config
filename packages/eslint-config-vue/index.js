@@ -36,6 +36,11 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/prefer-import-from-vue': 'off',
     'vue/no-v-text-v-html-on-component': 'off',
+    'vue/html-indent': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/html-self-closing': 'off',
+    'vue/first-attribute-linebreak': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
 
     // reactivity transform
     'vue/no-setup-props-destructure': 'off',
