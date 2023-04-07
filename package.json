@@ -1,6 +1,6 @@
 {
   "name": "@djie/eslint-config-monorepo",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "private": true,
   "packageManager": "pnpm@8.1.1",
   "license": "MIT",
