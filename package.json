@@ -1,7 +1,7 @@
 {
   "name": "@djie/eslint-config",
   "type": "module",
-  "version": "1.0.0-beta.27",
+  "version": "1.0.0-beta.28",
   "packageManager": "pnpm@8.9.2",
   "author": "(https://github.com/laihaojie/)",
   "license": "MIT",
