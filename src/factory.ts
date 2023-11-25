@@ -1,8 +1,7 @@
 import process from 'node:process'
 import fs from 'node:fs'
 import { isPackageExists } from 'local-pkg'
-import gitignore from 'eslint-config-flat-gitignore'
-import type { ConfigItem, OptionsConfig } from './types'
+import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from './types'
 import {
   comments,
   ignores,
@@ -12,7 +11,8 @@ import {
   jsonc,
   markdown,
   node,
-  sortKeys,
+  perfectionist,
+  react,
   sortPackageJson,
   sortTsconfig,
   stylistic,
@@ -22,9 +22,9 @@ import {
   vue,
   yaml,
 } from './configs'
-import { combine } from './utils'
+import { combine, interopDefault } from './utils'
 
-const flatConfigProps: (keyof ConfigItem)[] = [
+const flatConfigProps: (keyof FlatConfigItem)[] = [
   'files',
   'ignores',
   'languageOptions',
@@ -45,14 +45,18 @@ const VuePackages = [
 /**
  * Construct an array of ESLint flat config items.
  */
-export function jie(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (ConfigItem | ConfigItem[])[]) {
+export async function jie(
+  options: OptionsConfig & FlatConfigItem = {},
+  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
+): Promise<UserConfigItem[]> {
   const {
-    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
-    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
-    typescript: enableTypeScript = isPackageExists('typescript'),
-    gitignore: enableGitignore = true,
-    overrides = {},
     componentExts = [],
+    gitignore: enableGitignore = true,
+    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
+    overrides = {},
+    react: enableReact = false,
+    typescript: enableTypeScript = isPackageExists('typescript'),
+    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
   } = options
 
   const stylisticOptions = options.stylistic === false
@@ -63,15 +67,15 @@ export function jie(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (C
   if (stylisticOptions && !('jsx' in stylisticOptions))
     stylisticOptions.jsx = options.jsx ?? true
 
-  const configs: ConfigItem[][] = []
+  const configs: Awaitable<FlatConfigItem[]>[] = []
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
-      configs.push([gitignore(enableGitignore)])
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r(enableGitignore)]))
     }
     else {
       if (fs.existsSync('.gitignore'))
-        configs.push([gitignore()])
+        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]))
     }
   }
 
@@ -92,8 +96,8 @@ export function jie(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (C
     }),
     unicorn(),
 
-    // Optional plugins (not enabled by default)
-    sortKeys(),
+    // Optional plugins (installed but not enabled by default)
+    perfectionist(),
   )
 
   if (enableVue)
@@ -123,6 +127,13 @@ export function jie(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (C
     configs.push(vue({
       overrides: overrides.vue,
       stylistic: stylisticOptions,
+      typescript: !!enableTypeScript,
+    }))
+  }
+
+  if (enableReact) {
+    configs.push(react({
+      overrides: overrides.react,
       typescript: !!enableTypeScript,
     }))
   }
@@ -158,7 +169,7 @@ export function jie(options: OptionsConfig & ConfigItem = {}, ...userConfigs: (C
     if (key in options)
       acc[key] = options[key] as any
     return acc
-  }, {} as ConfigItem)
+  }, {} as FlatConfigItem)
   if (Object.keys(fusedConfig).length)
     configs.push([fusedConfig])
 

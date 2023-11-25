@@ -5,6 +5,7 @@ import jie from './dist/index.js'
 export default jie(
   {
     vue: true,
+    // react: true,
     typescript: true,
     ignores: [
       'fixtures',
@@ -14,7 +15,7 @@ export default jie(
   {
     files: ['src/**/*.ts'],
     rules: {
-      'sort-keys/sort-keys-fix': 'error',
+      'perfectionist/sort-objects': 'error',
     },
   },
   {

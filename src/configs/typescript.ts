@@ -1,20 +1,24 @@
 import process from 'node:process'
-import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
+import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
 import { GLOB_SRC } from '../globs'
-import { parserTs, pluginAntfu, pluginImport, pluginTs } from '../plugins'
-import { renameRules } from '../utils'
+import { pluginAntfu } from '../plugins'
+import { interopDefault, renameRules, toArray } from '../utils'
 
-export function typescript(
-  options?: OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions,
-): ConfigItem[] {
+export async function typescript(
+  options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
+): Promise<FlatConfigItem[]> {
   const {
     componentExts = [],
     overrides = {},
     parserOptions = {},
-    tsconfigPath,
-  } = options ?? {}
+  } = options
 
-  const typeAwareRules: ConfigItem['rules'] = {
+  const files = options.files ?? [
+    GLOB_SRC,
+    ...componentExts.map(ext => `**/*.${ext}`),
+  ]
+
+  const typeAwareRules: FlatConfigItem['rules'] = {
     'dot-notation': 'off',
     'no-implied-eval': 'off',
     'no-throw-literal': 'off',
@@ -36,21 +40,29 @@ export function typescript(
     'ts/unbound-method': 'error',
   }
 
+  const tsconfigPath = options?.tsconfigPath
+    ? toArray(options.tsconfigPath)
+    : undefined
+
+  const [
+    pluginTs,
+    parserTs,
+  ] = await Promise.all([
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
+    interopDefault(import('@typescript-eslint/parser')),
+  ] as const)
+
   return [
     {
       // Install the plugins without globs, so they can be configured separately.
       name: 'antfu:typescript:setup',
       plugins: {
         antfu: pluginAntfu,
-        import: pluginImport,
         ts: pluginTs as any,
       },
     },
     {
-      files: [
-        GLOB_SRC,
-        ...componentExts.map(ext => `**/*.${ext}`),
-      ],
+      files,
       languageOptions: {
         parser: parserTs,
         parserOptions: {
@@ -58,7 +70,7 @@ export function typescript(
           sourceType: 'module',
           ...tsconfigPath
             ? {
-                project: [tsconfigPath],
+                project: tsconfigPath,
                 tsconfigRootDir: process.cwd(),
               }
             : {},
@@ -80,7 +92,6 @@ export function typescript(
 
         'antfu/generic-spacing': 'error',
         'antfu/named-tuple-spacing': 'error',
-        'antfu/no-cjs-exports': 'error',
 
         'no-dupe-class-members': 'off',
         'no-invalid-this': 'off',
