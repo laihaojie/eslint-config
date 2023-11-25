@@ -1,5 +1,3 @@
-// @ts-check
-import styleMigrate from '@stylistic/eslint-plugin-migrate'
 import jie from './dist/index.js'
 
 export default jie(
@@ -18,13 +16,13 @@ export default jie(
       'perfectionist/sort-objects': 'error',
     },
   },
-  {
-    files: ['src/configs/*.ts'],
-    plugins: {
-      'style-migrate': styleMigrate,
-    },
-    rules: {
-      'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
-    },
-  },
+  // {
+  //   files: ['src/configs/*.ts'],
+  //   plugins: {
+  //     'style-migrate': styleMigrate,
+  //   },
+  //   rules: {
+  //     'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
+  //   },
+  // },
 )

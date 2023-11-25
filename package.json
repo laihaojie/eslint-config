@@ -18,9 +18,7 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": "./bin/index.js",
   "files": [
-    "bin",
     "dist"
   ],
   "scripts": {
@@ -35,21 +33,7 @@
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
-    "eslint": ">=8.40.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.4"
-  },
-  "peerDependenciesMeta": {
-    "eslint-plugin-react": {
-      "optional": true
-    },
-    "eslint-plugin-react-hooks": {
-      "optional": true
-    },
-    "eslint-plugin-react-refresh": {
-      "optional": true
-    }
+    "eslint": ">=8.40.0"
   },
   "dependencies": {
     "@antfu/eslint-config": "^2.1.0",
