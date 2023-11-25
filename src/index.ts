@@ -1,11 +1,11 @@
-import antfu, { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from "@antfu/eslint-config";
+import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
+import antfu from '@antfu/eslint-config'
 
 export default function jie(options?: OptionsConfig & FlatConfigItem, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
-
   const customOptions: OptionsConfig & FlatConfigItem = {
     rules: {
-      'vue/html-self-closing': 'off'
-    }
+      'vue/html-self-closing': 'off',
+    },
   }
 
   return antfu(deepMerge(customOptions, options ?? {}), ...userConfigs)
@@ -15,12 +15,16 @@ function deepMerge(target: any, source: any) {
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
       if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} })
+        if (!target[key])
+          Object.assign(target, { [key]: {} })
         deepMerge(target[key], source[key])
-      } else if (Array.isArray(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: [] })
+      }
+      else if (Array.isArray(source[key])) {
+        if (!target[key])
+          Object.assign(target, { [key]: [] })
         target[key] = target[key].concat(source[key])
-      } else {
+      }
+      else {
         Object.assign(target, { [key]: source[key] })
       }
     }
