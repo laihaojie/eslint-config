@@ -2,7 +2,7 @@
   "name": "@djie/eslint-config",
   "type": "module",
   "author": "(https://github.com/laihaojie/)",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "packageManager": "pnpm@8.10.5",
   "description": "Anthony's ESLint config",
   "license": "MIT",
