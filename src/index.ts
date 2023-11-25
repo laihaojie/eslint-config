@@ -4,6 +4,7 @@ import antfu from '@antfu/eslint-config'
 export default function jie(options?: OptionsConfig & FlatConfigItem, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
   const customOptions: OptionsConfig & FlatConfigItem = {
     rules: {
+      'antfu/if-newline': 'off',
       'vue/html-self-closing': 'off',
     },
   }
