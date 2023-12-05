@@ -6,6 +6,7 @@ export default function jie(options?: OptionsConfig & FlatConfigItem, ...userCon
     rules: {
       'antfu/if-newline': 'off',
       'vue/html-self-closing': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
     },
   }
 

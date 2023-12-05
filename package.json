@@ -27,7 +27,7 @@
     "dev": "tsup --format esm,cjs --watch & eslint-flat-config-viewer",
     "lint": "pnpm run stub && eslint .",
     "prepack": "nr build",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
