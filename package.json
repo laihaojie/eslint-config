@@ -22,9 +22,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --format esm,cjs --clean --dts",
+    "build": "tsup",
     "stub": "tsup --format esm",
-    "dev": "tsup --format esm,cjs --watch & eslint-flat-config-viewer",
+    "dev": "tsup --watch & eslint-flat-config-viewer",
     "lint": "pnpm run stub && eslint .",
     "prepack": "nr build",
     "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/",
