@@ -1,8 +1,10 @@
-import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
+import type { FlatConfigPipeline } from 'eslint-flat-config-utils'
+import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from '@antfu/eslint-config'
 import antfu from '@antfu/eslint-config'
+import type { Linter } from 'eslint'
 
-export default function jie(options?: OptionsConfig & FlatConfigItem, ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]) {
-  const customOptions: OptionsConfig & FlatConfigItem = {
+export default function jie(options?: OptionsConfig & TypedFlatConfigItem, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigPipeline<any> | Linter.FlatConfig[]>[]) {
+  const customOptions: OptionsConfig & TypedFlatConfigItem = {
     rules: {
       'antfu/if-newline': 'off',
       'vue/html-self-closing': 'off',
