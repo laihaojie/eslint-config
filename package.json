@@ -1,7 +1,7 @@
 {
   "name": "@djie/eslint-config",
   "type": "module",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "packageManager": "pnpm@8.10.5",
   "description": "Anthony's ESLint config",
   "author": "(https://github.com/laihaojie/)",
@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsup",
     "stub": "tsup --format esm",
-    "dev": "tsup --watch & eslint-flat-config-viewer",
+    "dev": "tsup --watch",
     "lint": "pnpm run stub && eslint .",
     "prepack": "nr build",
     "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/",
@@ -36,7 +36,7 @@
     "eslint": ">=8.40.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.4.3",
+    "@antfu/eslint-config": "^2.11.3",
     "@antfu/eslint-define-config": "1.23.0-2"
   },
   "devDependencies": {
