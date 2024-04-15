@@ -36,7 +36,7 @@
     "eslint": ">=8.40.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.11.3",
+    "@antfu/eslint-config": "^2.13.3",
     "@antfu/eslint-define-config": "1.23.0-2"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "@types/eslint": "^8.44.8",
     "@types/node": "^20.10.4",
     "bumpp": "^9.2.0",
-    "eslint": "^8.55.0",
+    "eslint": "^9.0.0",
     "lint-staged": "^15.2.0",
     "simple-git-hooks": "^2.9.0",
     "tsup": "^8.0.1",
