@@ -1,7 +1,7 @@
 {
   "name": "@djie/eslint-config",
   "type": "module",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Anthony's ESLint config",
   "author": "(https://github.com/laihaojie/)",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "dev": "tsup --watch",
     "lint": "pnpm run stub && eslint .",
     "prepack": "nr build",
-    "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/",
+    "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/ --no-git-checks",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
