@@ -1,4 +1,4 @@
-import jie from './dist/index.js'
+import jie from './src'
 
 export default jie(
   {

@@ -1,9 +1,9 @@
-import type { FlatConfigPipeline } from 'eslint-flat-config-utils'
+import type { FlatConfigComposer } from 'eslint-flat-config-utils'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from '@antfu/eslint-config'
 import antfu from '@antfu/eslint-config'
 import type { Linter } from 'eslint'
 
-export default function jie(options?: OptionsConfig & TypedFlatConfigItem, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigPipeline<any> | Linter.FlatConfig[]>[]) {
+export default function jie(options?: OptionsConfig & Omit<TypedFlatConfigItem, 'files'>, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]) {
   const customOptions: OptionsConfig & TypedFlatConfigItem = {
     rules: {
       'antfu/if-newline': 'off',

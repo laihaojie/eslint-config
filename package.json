@@ -24,7 +24,7 @@
     "build": "tsup",
     "stub": "tsup --format esm",
     "dev": "tsup --watch",
-    "lint": "pnpm run stub && eslint .",
+    "lint": "eslint --flag unstable_ts_config .",
     "prepack": "nr build",
     "release": "bumpp && pnpm publish --registry=https://registry.npmjs.org/ --no-git-checks",
     "test": "vitest",
@@ -35,20 +35,20 @@
     "eslint": ">=8.40.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.18.1",
+    "@antfu/eslint-config": "^3.0.0",
     "@antfu/eslint-define-config": "1.23.0-2"
   },
   "devDependencies": {
-    "@antfu/ni": "^0.21.12",
-    "@types/eslint": "^8.44.8",
+    "@antfu/ni": "^0.23.0",
+    "@types/eslint": "^9.6.1",
     "@types/node": "^20.10.4",
-    "bumpp": "^9.2.0",
-    "eslint": "^9.0.0",
-    "lint-staged": "^15.2.0",
-    "simple-git-hooks": "^2.9.0",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
-    "vitest": "^1.0.2"
+    "bumpp": "^9.5.2",
+    "eslint": "^9.9.1",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
