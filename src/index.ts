@@ -1,7 +1,7 @@
-import type { FlatConfigComposer } from 'eslint-flat-config-utils'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from '@antfu/eslint-config'
-import antfu from '@antfu/eslint-config'
 import type { Linter } from 'eslint'
+import type { FlatConfigComposer } from 'eslint-flat-config-utils'
+import antfu from '@antfu/eslint-config'
 
 export default function jie(options?: OptionsConfig & Omit<TypedFlatConfigItem, 'files'>, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]) {
   const customOptions: OptionsConfig & TypedFlatConfigItem = {
@@ -10,6 +10,12 @@ export default function jie(options?: OptionsConfig & Omit<TypedFlatConfigItem, 
       'vue/html-self-closing': 'off',
       'vue/singleline-html-element-content-newline': 'off',
     },
+    ignores: [
+      'src/api/auto/',
+      'src/api/meta/',
+      'src/api/types/',
+      'mock/',
+    ],
   }
 
   return antfu(deepMerge(customOptions, options ?? {}), ...userConfigs)
