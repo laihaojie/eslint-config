@@ -5,17 +5,17 @@ import antfu from '@antfu/eslint-config'
 
 export default function jie(options?: OptionsConfig & Omit<TypedFlatConfigItem, 'files'>, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]) {
   const customOptions: OptionsConfig & TypedFlatConfigItem = {
-    rules: {
-      'antfu/if-newline': 'off',
-      'vue/html-self-closing': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
-    },
     ignores: [
       'src/api/auto/',
       'src/api/meta/',
       'src/api/types/',
       'mock/',
     ],
+    rules: {
+      'antfu/if-newline': 'off',
+      'vue/html-self-closing': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+    },
   }
 
   return antfu(deepMerge(customOptions, options ?? {}), ...userConfigs)
