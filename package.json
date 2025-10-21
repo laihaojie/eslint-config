@@ -1,7 +1,7 @@
 {
   "name": "@djie/eslint-config",
   "type": "module",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Anthony's ESLint config",
   "author": "(https://github.com/laihaojie/)",
   "license": "MIT",
@@ -35,20 +35,20 @@
     "eslint": ">=8.40.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.9.0",
+    "@antfu/eslint-config": "^6.0.0",
     "@antfu/eslint-define-config": "1.23.0-2"
   },
   "devDependencies": {
-    "@antfu/ni": "^24.1.0",
+    "@antfu/ni": "^27.0.0",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^22.13.10",
-    "bumpp": "^10.1.0",
-    "eslint": "^9.22.0",
-    "lint-staged": "^15.4.3",
-    "simple-git-hooks": "^2.11.1",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.8"
+    "@types/node": "^24.9.1",
+    "bumpp": "^10.3.1",
+    "eslint": "^9.38.0",
+    "lint-staged": "^16.2.5",
+    "simple-git-hooks": "^2.13.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
