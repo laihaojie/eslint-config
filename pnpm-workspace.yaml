@@ -1,2 +1,10 @@
+allowBuilds:
+  esbuild: true
+  simple-git-hooks: true
+
+nodeLinker: hoisted
+shellEmulator: true
+trustPolicy: no-downgrade
+
 packages:
   - 'fixtures/*'
