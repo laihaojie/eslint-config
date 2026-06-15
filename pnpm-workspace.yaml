@@ -4,7 +4,9 @@ allowBuilds:
 
 nodeLinker: hoisted
 shellEmulator: true
-trustPolicy: no-downgrade
+
+# eslint-disable-next-line pnpm/yaml-enforce-settings
+trustPolicy: false
 
 packages:
   - 'fixtures/*'

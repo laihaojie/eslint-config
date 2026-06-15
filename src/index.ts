@@ -1,7 +1,10 @@
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from '@antfu/eslint-config'
 import type { Linter } from 'eslint'
 import type { FlatConfigComposer } from 'eslint-flat-config-utils'
-import antfu from '@antfu/eslint-config'
+// 用命名导出 `antfu` 而非默认导出：避免 tsdown 生成的 CJS 产物
+// 在 `require('@antfu/eslint-config')`（纯 ESM）时把整个命名空间对象赋给 `.default`，
+// 从而导致 `(0 , _antfu_eslint_config.default) is not a function`。
+import { antfu } from '@antfu/eslint-config'
 
 export default function jie(options?: OptionsConfig & Omit<TypedFlatConfigItem, 'files'>, ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]) {
   const customOptions: OptionsConfig & TypedFlatConfigItem = {
