@@ -1,7 +1,7 @@
 {
   "name": "@djie/eslint-config",
   "type": "module",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Anthony's ESLint config",
   "author": "(https://github.com/laihaojie/)",
   "license": "MIT",
@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "verify-build": "node scripts/verify-build.mjs",
     "stub": "tsup --format esm",
     "dev": "tsdown --watch",
     "lint": "eslint",
